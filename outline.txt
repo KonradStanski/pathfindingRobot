@@ -7,7 +7,8 @@ steps:
 		1.1: https://hereandabove.com/maze/mazeorig.form.html
 
 	2: Analyze pixel maze in mazetograph.py
-		2.1: find start and end
+		2.1: - create data structure from image
+			 - find start and end
 		2.2: put nodes on bends and junctions
 		2.3: give node connections distance weighting
 	
