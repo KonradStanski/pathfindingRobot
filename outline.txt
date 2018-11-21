@@ -3,7 +3,7 @@ The Plan:
 Part1:
 objective: Implement a maze solving algorithm in python
 steps:
-	1: Generate pixel maze (10*10) 
+	1: Generate pixel maze (10*10)
 		1.1: https://hereandabove.com/maze/mazeorig.form.html
 
 	2: Analyze pixel maze in mazetograph.py
@@ -11,7 +11,7 @@ steps:
 			 - find start and end
 		2.2: put nodes on bends and junctions
 		2.3: give node connections distance weighting
-	
+
 	3: implement algorith in pathfinding.py
 		3.1: implement djikstras algorithm or a* or d*
 		3.2: navigate the maze and output shortest path along nodes
@@ -23,8 +23,18 @@ steps:
 	1: make robot
 	2: make movement library/api for robot
 	3: make physical maze
-	4: implement 
+	4: implement
+
+
+
 
 Resources:
-maze generation: https://hereandabove.com/maze/mazeorig.form.html
-example code: https://github.com/mikepound/mazesolving
+maze generation:
+https://hereandabove.com/maze/mazeorig.form.html
+
+example code:
+https://github.com/mikepound/mazesolving
+
+Litteraly what we are trying to implement?
+https://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
+http://bryukh.com/labyrinth-algorithms/
