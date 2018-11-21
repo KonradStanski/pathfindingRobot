@@ -14,6 +14,7 @@ steps:
 	3: implement algorith in pathfinding.py
 		3.1: implement djikstras algorithm or a* or d*
 		3.2: navigate the maze and output shortest path along nodes
+		3.3: https://github.com/mikepound/mazesolving
 
 part2;
 objective: Implement maze navigation in an arduino
@@ -22,3 +23,7 @@ steps:
 	2: make movement library/api for robot
 	3: make physical maze
 	4: implement 
+
+Resources:
+maze generation: https://hereandabove.com/maze/mazeorig.form.html
+example code: https://github.com/mikepound/mazesolving
