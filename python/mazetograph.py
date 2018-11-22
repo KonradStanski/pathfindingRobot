@@ -31,7 +31,7 @@ for i in range(width):
 
 
 ##########################################################
-# always turn left finding algorithm / just for fun?
+# always turn  finding algorithm / just for fun?
 grid = maze_arr
 def search(x, y):
     print('entering maze')
