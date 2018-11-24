@@ -1,0 +1,40 @@
+{
+    "name": "VirtualWire", 
+    "keywords": [
+        "rf", 
+        "radio", 
+        "protocol"
+    ], 
+    "description": "It provides a simple message passing protocol for a range of inexpensive transmitter and receiver modules", 
+    "authors": [
+        {
+            "email": "mikem@airspayce.com", 
+            "url": null, 
+            "maintainer": false, 
+            "name": "Mike McCauley"
+        }
+    ], 
+    "version": "1.27", 
+    "downloadUrl": "http://www.airspayce.com/mikem/arduino/VirtualWire/VirtualWire-1.27.zip", 
+    "frameworks": [
+        "arduino"
+    ], 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam", 
+        "espressif32", 
+        "espressif8266", 
+        "intel_arc32", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "nordicnrf52", 
+        "ststm32", 
+        "teensy", 
+        "timsp430"
+    ], 
+    "export": {
+        "include": "VirtualWire", 
+        "exclude": "doc"
+    }, 
+    "id": 251
+}

@@ -1,0 +1,35 @@
+#---------------------------------------------------
+#    Name: Konrad Staniszewski, Andrew Rooney
+#    ID: 1531593, 1496508
+#    CMPUT 274, Fall  2018
+#
+#    Final Project
+# ---------------------------------------------------
+
+
+Wiring:
+
+
+Requirments and makefile setup:
+
+    In order to make these files, you need to navigate to /usr/share/arduino/libraries
+    and copy the Servo Library and copy it to /arduino-ua/libraries
+    It is also necessary to download the virtualWire library from:
+    https://platformio.org/lib/show/251/VirtualWire
+    and place it in /arduino-ua/libraries.
+
+    You then need to go into the provided arduino makefile and modify the entry that
+    defines what user libraries to include in the make.
+    To do this you simply add the name of the folders. it should now look like this:
+    ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen Servo VirtualWire
+
+    Documentation: http://www.airspayce.com/mikem/arduino/VirtualWire.pdf
+
+
+
+# movement.h:
+Functions:
+
+
+
+
