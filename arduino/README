@@ -8,6 +8,8 @@
 
 
 Wiring:
+    Connect the left servo motor to pin 9
+    connect right servo motor to pin 10
 
 
 Requirments and makefile setup:
@@ -25,7 +27,8 @@ Requirments and makefile setup:
 
     Documentation: http://www.airspayce.com/mikem/arduino/VirtualWire.pdf
 
-
+    For switching to stepper motors:
+    http://eeshop.unl.edu/pdf/Stepper+Driver.pdf
 
 # movement.h:
 Functions:
