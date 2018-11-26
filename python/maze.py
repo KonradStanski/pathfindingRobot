@@ -2,24 +2,15 @@ from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
 
-
 class node:
 	def __init__(self, isStart, isEnd, row, col, open):
 		self.isStart = isStart
 		self.isEnd = isEnd
-		self.row = row # y ordinate
-		self.col = col # x ordinate
 		self.open = open # boolean - open or wall?
 		self.spot = (row, col)
 		self.parent = None
-		self.chosen = None
 		# left right up down
-		self.neighbours = [(self.row, self.col+1),(self.row, self.col-1),(self.row+1, self.col),(self.row-1, self.col)]
-
-		# self.RN = (self.row, self.col+1)
-		# self.LN = (self.row, self.col-1)
-		# self.UN = (self.row+1, self.col)
-		# self.DN = (self.row-1, self.col)
+		self.neighbours = [(row, col+1),(row, col-1),(row+1, col),(row-1, col)]
 
 
 def compileNodes(height, width, mazeArr, start, end):
@@ -48,12 +39,12 @@ def findPath(start, end, nodes, height, width):
 	open = {}
 	closed = []
 	open[start] = getCost(start, end, nodes[start].spot)
-	while(1):
+	while(True):
 		current = min(open, key=open.get)
 		open.pop(current)
 		closed.append(current)
 		if current == end:
-			return(closed)
+			return
 		neighbours = nodes[current].neighbours
 		for i in neighbours:
 			if not(i[0] < 0 or i[1] < 0 or i[0] > height or i[1] > width or i in closed or not nodes[i].open) and i not in open:
@@ -61,50 +52,28 @@ def findPath(start, end, nodes, height, width):
 				open[i] = getCost(start, end, nodes[i].spot)
 
 
-def distance(a, b):
-	trueIf = (abs(a[0]-b[0]) == 0 and abs(a[1]-b[1]) == 1) or (abs(a[0]-b[0])==1 and abs(a[1]-b[1])==0)
-	return(trueIf)
-
-
-def finishPath(steps, end, start, nodes):
+def finishPath(end, nodes):
 	path = []
-	flag = True
-	count = 0
 	x = end[0]
-	while(flag):
-		# if(distance(steps[i], steps[i+1]) == 1):
-		# 	path.append(steps[i+1]))
+	while(True):
 		path.append(nodes[x].parent)
 		x = nodes[x].parent
-		if x == start[0]:
+		if nodes[x].isStart:
 			return(path[::-1]+end)
-
-	
 
 
 def main():
-    im = Image.open("/home/cmput274/ARCMPUT/arduino/final/274final/python/mazes/maze2_11X11.gif")
+    im = Image.open("/home/cmput274/ARCMPUT/arduino/final/274final/python/mazes/maze4.gif")
     mazeArr = np.array(im)
-    print(mazeArr)
     width = im.size[0]
     height = im.size[1]
     start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
     end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
-    nodes = compileNodes(height, width, mazeArr, start[0], end[0])
-    print(end, start)
-    # v = findPath(start[0], end[0], nodes, height, width)[::-1]
-    # for i in v:
-    # 	mazeArr[i[0]][i[1]] = 255
-
-    # print(mazeArr)   
-    c = finishPath(findPath(start[0], end[0], nodes, height, width)[::-1], end, start, nodes)
-    print(c)
+    nodes = compileNodes(height, width, mazeArr, start[0], end[0])  
+    findPath(start[0], end[0], nodes, height, width)
+    c = finishPath(end, nodes)
     for i in c:
     	mazeArr[i[0]][i[1]] = 255
-
-    print(mazeArr)
-   # out = Image.new(RGB, (width*height), color = 0)
-
     out = Image.fromarray(mazeArr)
     out.save( "out.PNG")
 
