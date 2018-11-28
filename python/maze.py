@@ -2,6 +2,9 @@ from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
 
+im = Image.open("mazes/maze2_11X11.gif")
+
+
 class node:
 	def __init__(self, isStart, isEnd, row, col, open):
 		self.isStart = isStart
@@ -11,6 +14,16 @@ class node:
 		self.parent = None
 		# left right up down
 		self.neighbours = [(row, col+1),(row, col-1),(row+1, col),(row-1, col)]
+
+
+def mazeInit():
+	mazeArr = np.array(im)
+	width = im.size[0]
+	height = im.size[1]
+	start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
+	end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
+	nodes = compileNodes(height, width, mazeArr, start[0], end[0]) 
+	return(mazeArr, start[0], end[0], nodes, height, width)
 
 
 def compileNodes(height, width, mazeArr, start, end):
@@ -54,29 +67,32 @@ def findPath(start, end, nodes, height, width):
 
 def finishPath(end, nodes):
 	path = []
-	x = end[0]
+	x = end
 	while(True):
 		path.append(nodes[x].parent)
 		x = nodes[x].parent
 		if nodes[x].isStart:
-			return(path[::-1]+end)
+			return(path[::-1]+[end])
 
 
-def main():
-    im = Image.open("/home/cmput274/ARCMPUT/arduino/final/274final/python/mazes/maze1_11X11.gif")
-    mazeArr = np.array(im)
-    width = im.size[0]
-    height = im.size[1]
-    start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
-    end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
-    nodes = compileNodes(height, width, mazeArr, start[0], end[0])  
-    findPath(start[0], end[0], nodes, height, width)
-    c = finishPath(end, nodes)
-    for i in c:
+def outputPath(mazeArr, path):
+    for i in path:
     	mazeArr[i[0]][i[1]] = 255
     out = Image.fromarray(mazeArr)
-    out.save( "out.PNG")
+    out.save( "out.PNG")	
+
+# def main():
+#     im = Image.open("mazes/maze1_11X11.gif")
+#     mazeArr = np.array(im)
+#     width = im.size[0]
+#     height = im.size[1]
+#     start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
+#     end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
+#     nodes = compileNodes(height, width, mazeArr, start[0], end[0])  
+#     findPath(start[0], end[0], nodes, height, width)
+#     c = finishPath(end, nodes)
+#     outputPath(mazeArr, c)
 
 
-if __name__=="__main__":
-	main()
+# if __name__=="__main__":
+# 	main()
