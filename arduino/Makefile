@@ -14,7 +14,7 @@ endif
 
 # Arduino Included Libraries
 ifndef ARDUINO_LIBS
-ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen Servo VirtualWire
+ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen AccelStepper
 endif
 
 # User Installed Library Location
