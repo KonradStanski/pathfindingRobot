@@ -4,10 +4,10 @@ Part1:
 objective: Implement a maze solving algorithm in python
 steps:
 	1: Generate pixel maze (10*10)
-		1.1: https://hereandabove.com/maze/mazeorig.form.html
+		1.1: https://hereandabove.com/maze/mazeorig.form.html *
 
 	2: Analyze pixel maze in mazetograph.py
-		2.1: - create data structure from image
+		2.1: - create data structure from image *
 			 - find start and end
 		2.2: put nodes on bends and junctions
 		2.3: give node connections distance weighting
@@ -38,3 +38,11 @@ https://github.com/mikepound/mazesolving
 Litteraly what we are trying to implement?
 https://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
 http://bryukh.com/labyrinth-algorithms/
+
+Stepper Control:
+http://www.airspayce.com/mikem/arduino/AccelStepper/classAccelStepper.html
+https://42bots.com/tutorials/28byj-48-stepper-motor-with-uln2003-driver-and-arduino-uno/
+
+Comms:
+http://www.userk.co.uk/arduino-bluetooth-linux/
+https://botforge.wordpress.com/2016/07/26/the-right-way-to-connect-an-hc-05-bluetooth-module-to-an-arduino/
