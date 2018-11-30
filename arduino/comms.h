@@ -8,7 +8,8 @@ led on pin 13
 */
 #include<Arduino.h>
 const int ledpin = 13;
-char val;
+int val = 1;
+int i = 0;
 
 void setup(){
     init();
@@ -18,33 +19,41 @@ void setup(){
     //TEST OUTPUT LED
     digitalWrite(ledpin, HIGH);
     delay(300);
-    digitalWrite(ledpin, LOW);}
+    digitalWrite(ledpin, LOW);
+}
 
 int main() {
     setup();
 
     while (true){
 
-        // Receive from phone
+        // Receive from bluetooth and send to comp
         if(Serial3.available()) {
-            //Serial.print("Received");
+            Serial.print(" Received ");
             val = Serial3.read();
-            Serial.print(val);
+            Serial3.print("sucessfully received: ");
+            Serial3.println(char(val));
+            Serial.print("val is: ");
+            Serial.print(char(val));
+            Serial.print(" ");
+            Serial.println(val);
+            i++;
 
             // INDICATOR
             digitalWrite(ledpin, HIGH);
-            //delay(200);
+            delay(1);
             digitalWrite(ledpin,LOW);
         }
-        // Transmit to phone
+        // Transmit from comp to bluetooth
         if(Serial.available()) {
-            //Serial3.print("Received")
+            Serial3.print("Received ");
             val = Serial.read();
-            Serial3.print(val);
+            Serial3.print("val is: ");
+            Serial3.println(val);
 
             //INDICATOR
             digitalWrite(ledpin, HIGH);
-            //delay(200);
+            delay(1);
             digitalWrite(ledpin,LOW);
         }
 

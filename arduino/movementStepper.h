@@ -31,6 +31,10 @@ int steps2 = 0; // keep track of the step count for motor 2
 boolean turn1 = false; //keep track if we are turning or going straight next
 boolean turn2 = false; //keep track if we are turning or going straight next
 
+
+
+
+/////////change this to be function definitions
 void setup() {
     init();
     delay(300); //sime time to put the robot down after swithing it on
@@ -87,8 +91,3 @@ int main() {
     }
     return 0;
 }
-
-
-
-
-

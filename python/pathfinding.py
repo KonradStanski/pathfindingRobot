@@ -1,4 +1,5 @@
 import maze
+import pyToArd as pta
 from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
@@ -34,14 +35,17 @@ def directions(finalPath):
     for x in range(len(finalPath)-1):
         direc.append(m.vector(finalPath[x], finalPath[x+1]))
     print(direc)
+    return direc
 
 
 def main():
-    mazeArr, start, end, nodes, height, width = maze.mazeInit()  
+    mazeArr, start, end, nodes, height, width = maze.mazeInit()
     maze.findPath(start, end, nodes, height, width)
     finalPath = maze.finishPath(end, nodes)
     maze.outputPath(mazeArr, finalPath)
     directions(finalPath)
+    try:
+        pta.writeToArd(/dev/rfcomm0, 9600, directions(finalPath)[0])
 
 
 if __name__=="__main__":
