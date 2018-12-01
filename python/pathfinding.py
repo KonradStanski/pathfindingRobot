@@ -45,7 +45,9 @@ def main():
     maze.outputPath(mazeArr, finalPath)
     directions(finalPath)
     try:
-        pta.writeToArd(/dev/rfcomm0, 9600, directions(finalPath)[0])
+        pta.writeToArd("/dev/rfcomm0", 9600, directions(finalPath)[0])
+    except:
+        print("ERROR: NO ARDUINO CONNECTED")
 
 
 if __name__=="__main__":

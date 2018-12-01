@@ -2,7 +2,7 @@ from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
 
-im = Image.open("mazes/maze2_11X11.gif")
+im = Image.open("mazes/maze4.gif")
 
 
 class node:
@@ -22,7 +22,7 @@ def mazeInit():
 	height = im.size[1]
 	start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
 	end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
-	nodes = compileNodes(height, width, mazeArr, start[0], end[0]) 
+	nodes = compileNodes(height, width, mazeArr, start[0], end[0])
 	return(mazeArr, start[0], end[0], nodes, height, width)
 
 
@@ -79,7 +79,7 @@ def outputPath(mazeArr, path):
     for i in path:
     	mazeArr[i[0]][i[1]] = 255
     out = Image.fromarray(mazeArr)
-    out.save( "out.PNG")	
+    out.save( "out.PNG")
 
 # def main():
 #     im = Image.open("mazes/maze1_11X11.gif")
@@ -88,7 +88,7 @@ def outputPath(mazeArr, path):
 #     height = im.size[1]
 #     start = [(0, i) for i in range(width) if im.getpixel((i, 0)) == 0]
 #     end = [(height-1, i) for i in range(width) if im.getpixel((i, height-1)) == 0]
-#     nodes = compileNodes(height, width, mazeArr, start[0], end[0])  
+#     nodes = compileNodes(height, width, mazeArr, start[0], end[0])
 #     findPath(start[0], end[0], nodes, height, width)
 #     c = finishPath(end, nodes)
 #     outputPath(mazeArr, c)
