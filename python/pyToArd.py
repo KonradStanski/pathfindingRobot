@@ -25,13 +25,15 @@ def writeToArd(port, baudrate, string):
 
     # write string to arduino
     ard.write(bytearray(string, 'ascii'))
-    print(string, "sent")
+    print(string, "sent successfully")
 
 
 
 if __name__ == "__main__":
     writeToArd(rf0, 9600, "test")
 
+
+#EXAMPLE WRITES:
 #val1 = bytearray("SSSNNNWNWEEEWNWEWNWNWNSNWEWSN", 'ascii') # defining ascii encoding
 #ard.write(val1)
 

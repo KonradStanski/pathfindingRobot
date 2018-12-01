@@ -45,9 +45,9 @@ def main():
 
     # get output string
     pathArr = directions(finalPath)
-    print(len(pathArr))
+    print("path length is: ", len(pathArr))
     pathStr = ''.join(pathArr)
-    print(pathStr)
+    print("path is: ", pathStr)
 
     #output string to arduino
     try:
