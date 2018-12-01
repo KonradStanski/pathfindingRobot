@@ -30,7 +30,7 @@ def writeToArd(port, baudrate, string):
 
 
 if __name__ == "__main__":
-    writeToArd(rf4, 9600, "test")
+    writeToArd(rf0, 9600, "test")
 
 #val1 = bytearray("SSSNNNWNWEEEWNWEWNWNWNSNWEWSN", 'ascii') # defining ascii encoding
 #ard.write(val1)

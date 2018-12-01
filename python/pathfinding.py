@@ -34,7 +34,6 @@ def directions(finalPath):
     m = Compass()
     for x in range(len(finalPath)-1):
         direc.append(m.vector(finalPath[x], finalPath[x+1]))
-    print(direc)
     return direc
 
 
@@ -43,9 +42,16 @@ def main():
     maze.findPath(start, end, nodes, height, width)
     finalPath = maze.finishPath(end, nodes)
     maze.outputPath(mazeArr, finalPath)
-    directions(finalPath)
+
+    # get output string
+    pathArr = directions(finalPath)
+    print(len(pathArr))
+    pathStr = ''.join(pathArr)
+    print(pathStr)
+
+    #output string to arduino
     try:
-        pta.writeToArd("/dev/rfcomm0", 9600, directions(finalPath)[0])
+        pta.writeToArd('/dev/rfcomm0', 9600, pathStr)
     except:
         print("ERROR: NO ARDUINO CONNECTED")
 

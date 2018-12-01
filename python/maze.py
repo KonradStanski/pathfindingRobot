@@ -2,7 +2,7 @@ from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
 
-im = Image.open("mazes/maze4.gif")
+im = Image.open("mazes/maze2_11X11.gif")
 
 
 class node:
