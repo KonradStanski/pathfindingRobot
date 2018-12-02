@@ -1,3 +1,11 @@
+/*---------------------------------------------------
+#    Name: Konrad Staniszewski, Andrew Rooney
+#    ID: 1531593, 1496508
+#    CMPUT 274, Fall  2018
+#
+#    Final Project
+# ---------------------------------------------------*/
+
 #ifndef COMMS_H
 #define COMMS_H
 
@@ -11,5 +19,5 @@ led on pin 13
 */
 
 // your functions go here...
-
+int * receivePath( void );
 #endif
