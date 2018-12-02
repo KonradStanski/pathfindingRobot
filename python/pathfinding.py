@@ -12,7 +12,7 @@ class Compass(object):
         if direction[1] == -1:
             direction[1] = "m1"
         where = 'direc_'+str(direction[0])+'to'+str(direction[1])
-        which = getattr(self, str(where), lambda: "uhoh")
+        which = getattr(self, str(where), lambda: "Invalid Path!")
         return which()
 
     def direc_0tom1(self):

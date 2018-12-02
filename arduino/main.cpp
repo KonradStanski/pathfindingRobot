@@ -22,15 +22,7 @@ char readInstrut();
 #include <Arduino.h>
 #include <AccelStepper.h>
 #include "comms.h"
-
-void executeMaze(int length, char * direc) {
-    char state = direc[0];
-    char next;
-    for(int i = 1; i<length; i++){
-        next = direc[i];
-
-    }
-}
+#include "movementStepper.h"
 
 void process(int length, char * direc){
     char state = direc[0];
@@ -53,23 +45,20 @@ void process(int length, char * direc){
     }
 }
 
+
 void setup() {
     init();
     Serial.begin(9600);
     Serial3.begin(9600);
     pinMode(ledpin,OUTPUT);
-    int length = getLen__prototype();
-    char direc[] = getArr__prototype();
-    process(length, direc);
-    executeMaze(length, direc);
-
 }
 
 
 int main() {
     setup();
-    while (true){
-
-    }
+    char direc[] = getArr__prototype();
+    int length = sizeof(direc)/sizeof(direc[0])-1;
+    process(length, direc);
+    executeMaze(length, direc);
     return 0;
 }
