@@ -23,7 +23,7 @@ Wiring:
 #include <AccelStepper.h>
 
 
-/*
+
 // Motor pin definitions
 #define HALFSTEP 8
 #define motorPin1  3     // IN1 on the ULN2003 driver 1
@@ -35,7 +35,7 @@ Wiring:
 #define motorPin6  9     // IN2 on the ULN2003 driver 2
 #define motorPin7  10    // IN3 on the ULN2003 driver 2
 #define motorPin8  11    // IN4 on the ULN2003 driver 2
-*/
+
 
 //Define functions:
 void left( void );
@@ -45,23 +45,23 @@ void forward( void );
 int * receivePath( void );
 
 
-/*
+
 // Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper with 28BYJ-48
 AccelStepper stepper1(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
 AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
 
 // variables
-int turnSteps = 2100; // number of steps for a 90 degree turn
-int lineSteps = -6600; //number of steps to drive straight
+//wheel is 8.47cm diameter/ circ = 26.6cm
+//4096 steps in a full rotation/ 1539 steps for 10cm
+//about 1600 steps for a 90deg turn
+int turnSteps = 1600; // number of steps for a 90 degree turn
+int lineSteps = -2200; //number of steps to drive straight
 int stepperSpeed = 1000; //speed of the stepper (steps per second)
 int steps1 = 0; // keep track of the step count for motor 1
 int steps2 = 0; // keep track of the step count for motor 2
 
 // reset motors after move
 void resetMot( void ) {
-    init();
-    delay(300); //sime time to put the robot down after swithing it on
-
     stepper1.setMaxSpeed(2000.0);
     stepper1.move(1);  // I found this necessary
     stepper1.setSpeed(stepperSpeed);
@@ -73,7 +73,7 @@ void resetMot( void ) {
 
 
 void left( void ){
-    resetMot();
+    //resetMot();
     int target = turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -85,12 +85,15 @@ void left( void ){
         stepper2.runSpeedToPosition();
         steps1 = stepper1.distanceToGo();
     }
+    stepper1.stop();
+    stepper2.stop();
+    delay(50);
     return;
 }
 
 
 void right( void ){
-    resetMot();
+    //resetMot();
     int target = -turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -102,12 +105,15 @@ void right( void ){
         stepper2.runSpeedToPosition();
         steps1 = stepper1.distanceToGo();
     }
+    stepper1.stop();
+    stepper2.stop();
+    delay(50);
     return;
 }
 
 
 void forward( void ){
-    resetMot();
+    //resetMot();
     int target = lineSteps;
     stepper1.move(-target);
     stepper1.setSpeed(stepperSpeed);
@@ -119,9 +125,12 @@ void forward( void ){
         stepper2.runSpeedToPosition();
         steps1 = stepper1.distanceToGo();
     }
+    stepper1.stop();
+    stepper2.stop();
+    delay(50);
     return;
 }
-*/
+
 
 int * receivePath( void ) {
     static int pathlen;
@@ -150,28 +159,70 @@ int * receivePath( void ) {
     return path;
 }
 
-/*
-void process(int length, char * direc){
-    char state = direc[0];
-    char next;
-    for(int i = 1; i<length; i++){
-        next = direc[i];
-        if((state == "N" && next == "N") || (state == "S" && next == "S") || (state == "E" && next == "E") || (state == "W" && next == "W")){
+
+void process(int length, int * direc){
+    Serial3.println("entering processing");
+    Serial3.flush();
+    Serial3.print("length is: ");
+    Serial3.flush();
+    Serial3.println(length);
+    Serial3.flush();
+
+
+    //Start with a move south
+    forward();
+
+    // Start state machine
+    int state[1]; // init state
+    state[0] = direc[1]; // get first state
+
+    Serial3.print("first state: ");
+    Serial3.flush();
+    Serial3.println(char(state[0]));
+    Serial3.flush();
+
+    int next[1]; // init next
+    for(int i = 2; i <= length; i++){
+
+        Serial3.print("i is: ");
+        Serial3.flush();
+        Serial3.print(i);
+        Serial3.flush();
+
+        next[0] = direc[i];
+
+        Serial3.print(" next state: ");
+        Serial3.flush();
+        Serial3.print(char(next[0]));
+        Serial3.flush();
+
+
+
+        if((state[0] == 78 && next[0] == 78) || (state[0] == 83 && next[0] == 83) || (state[0] == 69 && next[0] == 69) || (state[0] == 87 && next[0] == 87)){
+            Serial3.println(" enter forward");
+            Serial3.flush();
             forward();
-        }else if((state == "N" && next == "S") || (state == "S" && next == "N") || (state == "E" && next = "W") || (state == "W" && next == "E")){
+        }else if((state[0] == 78 && next[0] == 83) || (state[0] == 83 && next[0] == 78) || (state[0] == 69 && next[0] == 87) || (state[0] == 87 && next[0] == 69)){
+            Serial3.println(" enter turn 180 forward");
+            Serial3.flush();
             right();
             right();
             forward();
-        }else if((state == "N" && next == "E") || (state == "S" && next == "W") || (state == "E" && next = "S") || (state == "W" && next == "N")){
+        }else if((state[0] == 78 && next[0] == 69) || (state[0] == 83 && next[0] == 87) || (state[0] == 69 && next[0] == 83) || (state[0] == 87 && next[0] == 78)){
+            Serial3.println(" enter right + forward");
+            Serial3.flush();
             right();
             forward();
-        }else if((state == "N" && next == "W") || (state == "S" && next == "E") || (state == "E" && next = "N") || (state == "W" && next == "S")){
+        }else if((state[0] == 78 && next[0] == 87) || (state[0] == 83 && next[0] == 69) || (state[0] == 69 && next[0] == 78) || (state[0] == 87 && next[0] == 83)){
+            Serial3.println(" enter left + forward");
+            Serial3.flush();
             left();
             forward();
         }
+        state[0] = next[0];
     }
 }
-*/
+
 
 void setup() {
     init();
@@ -185,8 +236,7 @@ int main() {
     int *path;
     path = receivePath();
     int length = path[0];
-    Serial.println(length);
-    //process(length, direc);
-    //executeMaze(length, direc);
+    resetMot();
+    process(length, path);
     return 0;
 }

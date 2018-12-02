@@ -16,16 +16,16 @@ class Compass(object):
         return which()
 
     def direc_0tom1(self):
-        return "S"
+        return "W"
 
     def direc_0to1(self):
-        return "N"
-
-    def direc_1to0(self):
         return "E"
 
+    def direc_1to0(self):
+        return "S"
+
     def direc_m1to0(self):
-        return "W"
+        return "N"
 
 
 
@@ -51,7 +51,7 @@ def main():
 
     #output string to arduino
     try:
-        pta.writeToArd('/dev/rfcomm0', 9600, pathStr)
+        pta.writeToArd('/dev/rfcomm1', 9600, pathStr)
     except:
         print("ERROR: NO ARDUINO CONNECTED")
 
