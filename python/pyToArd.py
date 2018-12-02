@@ -18,8 +18,8 @@ def writeToArd(port, baudrate, string):
     time.sleep(0.2)
 
     # write length of string
-    strLen = str(len(string)) # find length of string so that arduino can init a buf
-    strLen = bytearray(strLen, 'ascii') # send str len first
+    strLen = len(string) # find length of string so that arduino can init a buf
+    strLen = bytearray([strLen]) # send str len first
     ard.write(strLen)
     time.sleep(0.1)
 
