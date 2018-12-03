@@ -6,6 +6,21 @@
 #    Final Project
 # ---------------------------------------------------
 
+Running Instructions:
+    1. Wire the Arduino as detailed in the wiring instructions
+    2. Configure the makefile as detailed below
+    3. Make and upload to the arduino
+    4. Connect with your computer to the bluetooth module using bluetooth manager
+    5. Determine what /dev/*** port it is connected to in bluetooth manager
+    6. Modify the port in writeToArd() function call within pathfinding.py
+    7. Generate maze using reference website and crop white border or use example maze
+    8. Specify maze name and path in maze.py
+    9. Turn on arduino connected to appropriate power source
+    10. For debug output, in a terminal open sudo minicom to the same /dev/**** as sepcified in pathfinding.py
+    11. Run sudo python3 pathfinding.py
+    12. The robot will now run the maze and print its current state to the minicom terminal over bluetooth
+
+
 Wiring instructions:
     //Stepper Drivers
     Arduino digital pin 3     // IN1 on the ULN2003 driver 1
@@ -29,9 +44,7 @@ Wiring instructions:
     5-12V Power Source        // Arduino VIN
     GND Power Source          // Arduino GND
 
-
-Requirments for Arduino and makefile setup:
-
+Makefile Configuration and Requirments for Arduino:
     In order to make main.cpp, you need to navigate to /usr/share/arduino/libraries
     and copy the Servo Library and copy it to /arduino-ua/libraries
     It is also necessary to download the virtualWire library from:
@@ -41,12 +54,7 @@ Requirments for Arduino and makefile setup:
     You then need to go into the provided arduino makefile and modify the entry that
     defines what user libraries to include in the make.
     To do this you simply add the name of the folders. it should now look like this:
-    ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen Servo VirtualWire
-
-    Documentation: http://www.airspayce.com/mikem/arduino/VirtualWire.pdf
-
-    For switching to stepper motors:
-    http://eeshop.unl.edu/pdf/Stepper+Driver.pdf
+    ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen AccelStepper
 
 
 Python Requirments:
@@ -67,3 +75,8 @@ Resources:
     Comms:
     http://www.userk.co.uk/arduino-bluetooth-linux/
     https://botforge.wordpress.com/2016/07/26/the-right-way-to-connect-an-hc-05-bluetooth-module-to-an-arduino/
+
+
+Notes:
+    Serial port is defined in writeToArd() function call in pathfinding.py
+    Function comments can be found with the functions

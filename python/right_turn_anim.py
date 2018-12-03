@@ -93,8 +93,6 @@ print ('Maze end:', end, '\n')
 #print (maze_arr)
 print (path)
 print( moves )
-maze_arr = np.array(im)
-print(maze_arr)
 
 
 # create nearest neighbour pixel structure

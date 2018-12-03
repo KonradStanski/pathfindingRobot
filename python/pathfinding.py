@@ -51,7 +51,7 @@ def main():
 
     #output string to arduino
     try:
-        pta.writeToArd('/dev/rfcomm3', 9600, pathStr)
+        pta.writeToArd('/dev/rfcomm0', 9600, pathStr)
     except:
         print("ERROR: NO ARDUINO CONNECTED")
 
