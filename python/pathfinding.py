@@ -51,9 +51,9 @@ def main():
 
     #output string to arduino
     try:
-        pta.writeToArd('/dev/rfcomm0', 9600, pathStr)
+        pta.writeToArd(pathStr)
     except:
-        print("ERROR: NO ARDUINO CONNECTED")
+        print("ERROR: Unable to send string")
 
 
 if __name__=="__main__":

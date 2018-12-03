@@ -12,13 +12,23 @@ Running Instructions:
     3. Make and upload to the arduino
     4. Connect with your computer to the bluetooth module using bluetooth manager
     5. Determine what /dev/*** port it is connected to in bluetooth manager
-    6. Modify the port in writeToArd() function call within pathfinding.py
+    6. Modify the port in writeToArd() function in pyToArd.py
     7. Generate maze using reference website and crop white border or use example maze
     8. Specify maze name and path in maze.py
     9. Turn on arduino connected to appropriate power source
     10. For debug output, in a terminal open sudo minicom to the same /dev/**** as sepcified in pathfinding.py
     11. Run sudo python3 pathfinding.py
     12. The robot will now run the maze and print its current state to the minicom terminal over bluetooth
+
+
+Python Requirments:
+    pillow import as PIL
+        sudo pip3 install pillow
+    time import as time
+    numpy import as numpy
+        sudo pip3 install numpy
+    pyserial import as serial
+        sudo pip3 install pyserial
 
 
 Wiring instructions:
@@ -57,13 +67,6 @@ Makefile Configuration and Requirments for Arduino:
     ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen AccelStepper
 
 
-Python Requirments:
-    pillow import as PIL
-    time import as time
-    numpy import as numpy
-    pyserial import as serial
-
-
 Resources:
     maze generation:
     https://hereandabove.com/maze/mazeorig.form.html
@@ -78,5 +81,5 @@ Resources:
 
 
 Notes:
-    Serial port is defined in writeToArd() function call in pathfinding.py
+    Serial port is defined in writeToArd() function in pyToArd.py
     Function comments can be found with the functions

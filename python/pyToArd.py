@@ -9,10 +9,14 @@ rf3 = '/dev/rfcomm3'
 rf4 = '/dev/rfcomm4'
 usb = '/dev/ttyUSB0'
 
-def writeToArd(port, baudrate, string):
-
+def writeToArd(string):
+# This function takes a string and sends it over the defined serial port
+# this is acheived by converting to a ascii encoded byte array.
+# args: string
+# returns: nothing
+    serialport = "/dev/rfcomm0"
     #initialize an serial port arduino instance
-    ard = serial.Serial(port, baudrate, timeout = 5)
+    ard = serial.Serial(serialport, 9600, timeout = 5)
 
     #wait for arduino to be ready
     time.sleep(0.2)

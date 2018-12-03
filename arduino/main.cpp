@@ -8,14 +8,39 @@
 
 /*
 Functions for movement:
-void left();
-void right();
-void forward();
+void left( void );
+    turns 90 degrees left
+void right( void );
+    turns 90 degrees right
+void forward( void );
+    goes forward one block
 
 Functions for communication:
-int ();
+int * receivePath( void );
+    Reads in a character array of the path instructions
 
-Wiring:
+Wiring instructions:
+    //Stepper Drivers
+    Arduino digital pin 3     // IN1 on the ULN2003 driver 1
+    Arduino digital pin 4     // IN2 on the ULN2003 driver 1
+    Arduino digital pin 5     // IN3 on the ULN2003 driver 1
+    Arduino digital pin 6     // IN4 on the ULN2003 driver 1
+    Arduino digital pin 8     // IN1 on the ULN2003 driver 2
+    Arduino digital pin 9     // IN2 on the ULN2003 driver 2
+    Arduino digital pin 10    // IN3 on the ULN2003 driver 2
+    Arduino digital pin 11    // IN4 on the ULN2003 driver 2
+    5-12V Power Source        // +VCC on ULN2003 driver 1 and 2
+    Arduino GND               // GND on ULN2003 driver 1 and 2
+
+    //Bluetooth
+    Arduino digital pin 14 TX // RX on HC-05 Module
+    Arduino digital pin 15 RX // TX on HC-05 Module
+    Arduino 5-12V             // VCC on HC-05 Module
+    Arduino GND               // GND on HC-05 Module
+
+    //Arduino
+    5-12V Power Source        // Arduino VIN
+    GND Power Source          // Arduino GND
 
 */
 

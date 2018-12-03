@@ -1,7 +1,8 @@
 from PIL import Image
 import numpy as np
 from time import sleep
-
+#==========================================this file is not necessary for function of program====================================
+#===================================================it just does a cool animation================================================
 #Opens the Image
 im = Image.open('mazes/maze2_11X11.gif')
 
@@ -72,14 +73,14 @@ for i in range(len(path)-1):
     print("i is:", i, "xdist: ", xdist, "ydist: ", ydist)
 
 
-# #small animation
-# maze_arr = np.array(im)
-# for i in range(len(path)-1):
-#     x = path[i][0]
-#     y = path[i][1]
-#     maze_arr[x][y] = 4
-#     print(maze_arr)
-#     sleep(0.1)
+#small animation
+maze_arr = np.array(im)
+for i in range(len(path)-1):
+    x = path[i][0]
+    y = path[i][1]
+    maze_arr[x][y] = 4
+    print(maze_arr)
+    sleep(0.1)
 
 
 #Prints maze information for debugging
@@ -93,9 +94,3 @@ print ('Maze end:', end, '\n')
 #print (maze_arr)
 print (path)
 print( moves )
-
-
-# create nearest neighbour pixel structure
-# catch edge cases *litteraly*
-
-
