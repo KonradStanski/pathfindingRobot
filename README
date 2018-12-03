@@ -6,3 +6,64 @@
 #    Final Project
 # ---------------------------------------------------
 
+Wiring instructions:
+    //Stepper Drivers
+    Arduino digital pin 3     // IN1 on the ULN2003 driver 1
+    Arduino digital pin 4     // IN2 on the ULN2003 driver 1
+    Arduino digital pin 5     // IN3 on the ULN2003 driver 1
+    Arduino digital pin 6     // IN4 on the ULN2003 driver 1
+    Arduino digital pin 8     // IN1 on the ULN2003 driver 2
+    Arduino digital pin 9     // IN2 on the ULN2003 driver 2
+    Arduino digital pin 10    // IN3 on the ULN2003 driver 2
+    Arduino digital pin 11    // IN4 on the ULN2003 driver 2
+    5-12V Power Source        // +VCC on ULN2003 driver 1 and 2
+    Arduino GND               // GND on ULN2003 driver 1 and 2
+
+    //Bluetooth
+    Arduino digital pin 14 TX // RX on HC-05 Module
+    Arduino digital pin 15 RX // TX on HC-05 Module
+    Arduino 5-12V             // VCC on HC-05 Module
+    Arduino GND               // GND on HC-05 Module
+
+    //Arduino
+    5-12V Power Source        // Arduino VIN
+    GND Power Source          // Arduino GND
+
+
+Requirments for Arduino and makefile setup:
+
+    In order to make main.cpp, you need to navigate to /usr/share/arduino/libraries
+    and copy the Servo Library and copy it to /arduino-ua/libraries
+    It is also necessary to download the virtualWire library from:
+    https://platformio.org/lib/show/251/VirtualWire
+    and place it in /arduino-ua/libraries.
+
+    You then need to go into the provided arduino makefile and modify the entry that
+    defines what user libraries to include in the make.
+    To do this you simply add the name of the folders. it should now look like this:
+    ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen Servo VirtualWire
+
+    Documentation: http://www.airspayce.com/mikem/arduino/VirtualWire.pdf
+
+    For switching to stepper motors:
+    http://eeshop.unl.edu/pdf/Stepper+Driver.pdf
+
+
+Python Requirments:
+    pillow import as PIL
+    time import as time
+    numpy import as numpy
+    pyserial import as serial
+
+
+Resources:
+    maze generation:
+    https://hereandabove.com/maze/mazeorig.form.html
+
+    Stepper Control:
+    http://www.airspayce.com/mikem/arduino/AccelStepper/classAccelStepper.html
+    https://42bots.com/tutorials/28byj-48-stepper-motor-with-uln2003-driver-and-arduino-uno/
+
+    Comms:
+    http://www.userk.co.uk/arduino-bluetooth-linux/
+    https://botforge.wordpress.com/2016/07/26/the-right-way-to-connect-an-hc-05-bluetooth-module-to-an-arduino/

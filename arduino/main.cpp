@@ -55,7 +55,7 @@ AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
 //4096 steps in a full rotation/ 1539 steps for 10cm
 //about 1645 steps for a 90deg turn
 int turnSteps = 1645; // number of steps for a 90 degree turn
-int lineSteps = -4000; //number of steps to drive straight
+int lineSteps = -5000; //number of steps to drive straight
 int stepperSpeed = 1000; //speed of the stepper (steps per second)
 int steps1 = 0; // keep track of the step count for motor 1
 int steps2 = 0; // keep track of the step count for motor 2

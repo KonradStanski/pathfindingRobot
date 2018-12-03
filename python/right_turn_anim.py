@@ -3,7 +3,7 @@ import numpy as np
 from time import sleep
 
 #Opens the Image
-im = Image.open('mazes/maze1_11X11.gif')
+im = Image.open('mazes/maze2_11X11.gif')
 
 #Reads the image pixel information INDEXING IS ****(Y,X)****
 maze_arr = np.array(im)
@@ -72,14 +72,14 @@ for i in range(len(path)-1):
     print("i is:", i, "xdist: ", xdist, "ydist: ", ydist)
 
 
-#small animation
-maze_arr = np.array(im)
-for i in range(len(path)-1):
-    x = path[i][0]
-    y = path[i][1]
-    maze_arr[x][y] = 4
-    print(maze_arr)
-    sleep(0.1)
+# #small animation
+# maze_arr = np.array(im)
+# for i in range(len(path)-1):
+#     x = path[i][0]
+#     y = path[i][1]
+#     maze_arr[x][y] = 4
+#     print(maze_arr)
+#     sleep(0.1)
 
 
 #Prints maze information for debugging
@@ -93,6 +93,9 @@ print ('Maze end:', end, '\n')
 #print (maze_arr)
 print (path)
 print( moves )
+maze_arr = np.array(im)
+print(maze_arr)
+
 
 # create nearest neighbour pixel structure
 # catch edge cases *litteraly*
