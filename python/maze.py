@@ -30,7 +30,7 @@ def compileNodes(height, width, mazeArr, start, end):
 	nodes = {}
 	for i in range(width): # all columns
 		for j in range(height): # all rows
-			if mazeArr[j][i]: # its true of the values is 1 and the node is closed
+			if mazeArr[j][i]: # its true of the values is 1 and the node is closed/ wall
 				nodes[(j, i)] = node(0, 0, j, i, 0) # a closed node
 			else: # it's open
 				if (j, i) != start and (j, i) != end:
