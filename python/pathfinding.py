@@ -39,6 +39,7 @@ def directions(finalPath):
 
 def main():
     mazeArr, start, end, nodes, height, width = maze.mazeInit()
+    print(start)
     maze.findPath(start, end, nodes, height, width)
     finalPath = maze.finishPath(end, nodes)
     maze.outputPath(mazeArr, finalPath)

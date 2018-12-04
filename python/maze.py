@@ -2,7 +2,7 @@ from PIL import Image, ImageColor, ImageDraw
 import numpy as np
 
 
-im = Image.open("mazes/maze2_11X11.gif")
+im = Image.open("mazes/maze1_medium.gif")
 
 
 class node:
@@ -60,7 +60,7 @@ def findPath(start, end, nodes, height, width):
 			return
 		neighbours = nodes[current].neighbours
 		for i in neighbours:
-			if not(i[0] < 0 or i[1] < 0 or i[0] > height or i[1] > width or i in closed or not nodes[i].open) and i not in open:
+			if not(i[0] < 0 or i[1] < 0 or i[0] > height or i[1] > width or i in closed or not nodes[i].open) and i not in open and i not in closed:
 				nodes[i].parent = current
 				open[i] = getCost(start, end, nodes[i].spot)
 
