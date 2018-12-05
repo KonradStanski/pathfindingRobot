@@ -17,6 +17,7 @@ class node:
 
 
 def mazeInit():
+#initializes the logic array from the maze image
 	mazeArr = np.array(im)
 	width = im.size[0]
 	height = im.size[1]
@@ -27,6 +28,7 @@ def mazeInit():
 
 
 def compileNodes(height, width, mazeArr, start, end):
+# initialized the dictionary of nodes from their x,y location tuple
 	nodes = {}
 	for i in range(width): # all columns
 		for j in range(height): # all rows
@@ -43,22 +45,25 @@ def compileNodes(height, width, mazeArr, start, end):
 
 
 def getCost(start, end, me):
+#uses manhattan distance heuristic
+# gets the distance from start in h and to end in g in manhattan distances
 	hCost = abs((me[0]-start[0]))+abs((me[1]-start[1]))
 	gCost = abs((me[0]-end[0]))+abs((me[1]-end[1]))
 	return(hCost+gCost)
 
 
 def findPath(start, end, nodes, height, width):
-	open = {}
-	closed = []
-	open[start] = getCost(start, end, nodes[start].spot)
+# This implements A*
+	open = {} # dictionary of open nodes
+	closed = [] # list of closed nodes
+	open[start] = getCost(start, end, nodes[start].spot) #get initial node
 	while(True):
-		current = min(open, key=open.get)
-		open.pop(current)
-		closed.append(current)
-		if current == end:
-			return
-		neighbours = nodes[current].neighbours
+		current = min(open, key=open.get) # current is least expenisve node in open
+		open.pop(current) # remove current node from open
+		closed.append(current) # add current node to closed
+		if current == end: # check f end reached
+			return # if end reached end
+		neighbours = nodes[current].neighbours # fetch neighbours
 		for i in neighbours:
 			if not(i[0] < 0 or i[1] < 0 or i[0] > height or i[1] > width or i in closed or not nodes[i].open) and i not in open:
 				nodes[i].parent = current
@@ -79,7 +84,7 @@ def outputPath(mazeArr, path):
     for i in path:
     	mazeArr[i[0]][i[1]] = 255
     out = Image.fromarray(mazeArr)
-    out.save( "out.PNG")
+    out.save( "out.PNG" )
 
 # def main():
 #     im = Image.open("mazes/maze1_11X11.gif")
