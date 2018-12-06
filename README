@@ -7,7 +7,7 @@
 # ---------------------------------------------------
 
 Running Instructions:
-    1. Wire the Arduino as detailed in the wiring instructions
+    1. Wire the Arduino as detailed in the wiring instructions below
     2. Configure the makefile as detailed below
     3. Make and upload to the arduino
     4. Connect with your computer to the bluetooth module using bluetooth manager

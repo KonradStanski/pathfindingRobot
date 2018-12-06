@@ -90,9 +90,9 @@ void process(int length, int * direc);
 void resetMot(void){
 /* Resets the stepper motor state to zero the motors
 */
-    stepper1.setMaxSpeed(2000.0);
-    stepper1.move(1);
-    stepper1.setSpeed(stepperSpeed);
+    stepper1.setMaxSpeed(2000.0); // max number of steps per second
+    stepper1.move(1); // necessay to get it going
+    stepper1.setSpeed(stepperSpeed); // apply stepper speed
 
     stepper2.setMaxSpeed(2000.0);
     stepper2.move(-1);
@@ -222,21 +222,14 @@ The debug statemetns can be read if you connect a minicom terminal to /dev/rfcom
 
     int next[1]; // init next
     for(int i = 2; i <= length; i++){
-
-        Serial3.print("i is: ");
-        Serial3.flush();
-        Serial3.print(i);
-        Serial3.flush();
-
-        next[0] = direc[i];
+        next[0] = direc[i]; // set next state
 
         Serial3.print(" next state: ");
         Serial3.flush();
         Serial3.print(char(next[0]));
         Serial3.flush();
 
-
-
+        // a if else state machine that has 4 possible moves and accepts varyations of current state and next state combinations
         if((state[0] == 78 && next[0] == 78) || (state[0] == 83 && next[0] == 83) || (state[0] == 69 && next[0] == 69) || (state[0] == 87 && next[0] == 87)){
             Serial3.println(" enter forward");
             Serial3.flush();
@@ -264,18 +257,18 @@ The debug statemetns can be read if you connect a minicom terminal to /dev/rfcom
 
 
 void setup() {
-    init();
+    init(); // itit arduino functions
     Serial.begin(9600);
     Serial3.begin(9600);
+    resetMot(); // initialize the motors
 }
 
 
 int main() {
     setup();
-    int *path;
-    path = receivePath();
-    int length = path[0];
-    resetMot();
-    process(length, path);
+    int *path; // initialize the path
+    path = receivePath(); // receive the path array pointer
+    int length = path[0]; // get the length from the first element of the path array
+    process(length, path); // process the path and navigate the maze
     return 0;
 }
