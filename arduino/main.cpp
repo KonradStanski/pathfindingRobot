@@ -41,16 +41,16 @@ Wiring instructions:
     //Arduino
     5-12V Power Source        // Arduino VIN
     GND Power Source          // Arduino GND
-
 */
 
+// Library includes
 #include <Arduino.h>
 #include <AccelStepper.h>
 
 
-
 // Motor pin definitions
 #define HALFSTEP 8
+
 #define motorPin1  3     // IN1 on the ULN2003 driver 1
 #define motorPin2  4     // IN2 on the ULN2003 driver 1
 #define motorPin3  5     // IN3 on the ULN2003 driver 1
@@ -62,18 +62,10 @@ Wiring instructions:
 #define motorPin8  11    // IN4 on the ULN2003 driver 2
 
 
-//Define functions:
-void resetMot(void);
-void left(void);
-void right(void);
-void forward(void);
-int * receivePath(void);
-
-
-
 // Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper with 28BYJ-48
 AccelStepper stepper1(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
 AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
+
 
 // variables
 // wheel is 8.47cm diameter/ circ = 26.6cm
@@ -85,8 +77,19 @@ int stepperSpeed = 1000; //speed of the stepper (steps per second)
 int steps1 = 0; // keep track of the step count for motor 1
 int steps2 = 0; // keep track of the step count for motor 2
 
-// reset motors after move
-void resetMot(void) {
+
+//Define functions:
+void resetMot(void);
+void left(void);
+void right(void);
+void forward(void);
+int * receivePath(void);
+void process(int length, int * direc);
+
+
+void resetMot(void){
+/* Resets the stepper motor state to zero the motors
+*/
     stepper1.setMaxSpeed(2000.0);
     stepper1.move(1);
     stepper1.setSpeed(stepperSpeed);
@@ -98,6 +101,8 @@ void resetMot(void) {
 
 
 void left(void){
+/* Turns the robot 90 degrees left
+*/
     int target = turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -117,6 +122,8 @@ void left(void){
 
 
 void right( void ){
+/* Turns the robot 90 degrees right
+*/
     int target = -turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -136,7 +143,8 @@ void right( void ){
 
 
 void forward( void ){
-    //resetMot();
+/* Mmoves the robot forward 22 cm
+*/
     int target = lineSteps;
     stepper1.move(-target);
     stepper1.setSpeed(stepperSpeed);
@@ -156,6 +164,10 @@ void forward( void ){
 
 
 int * receivePath( void ) {
+/* This function reads in the path sent in the "NSWE" string format from serial3
+which is the bluetooth module. It then creates an array using malloc and returns the pointer to the array
+this array is an array of ints which means that we will be using the ascii values of "N", "W", "S", "E"
+*/
     static int pathlen;
     int pathin;
     while (Serial3.available() == 0) { }// block until read in length
@@ -177,12 +189,17 @@ int * receivePath( void ) {
         path[i] = pathin;
         Serial.println(path[i]);
     }
-    delay(500);
+    delay(500); // delay needed to let arduino do some processing and flush serial
     return path;
 }
 
 
 void process(int length, int * direc){
+/* This function reads along the length of the direc array given the pointer to the array
+it uses the ascii decimal values of the letters for comparison.
+If then uses a "state" machine to determine what steps to do next
+The debug statemetns can be read if you connect a minicom terminal to /dev/rfcommX
+*/
     Serial3.println("entering processing");
     Serial3.flush();
     Serial3.print("length is: ");
