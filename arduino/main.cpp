@@ -63,11 +63,11 @@ Wiring instructions:
 
 
 //Define functions:
-void left( void );
-void right( void );
-void forward( void );
-
-int * receivePath( void );
+void resetMot(void);
+void left(void);
+void right(void);
+void forward(void);
+int * receivePath(void);
 
 
 
@@ -76,29 +76,28 @@ AccelStepper stepper1(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
 AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
 
 // variables
-//wheel is 8.47cm diameter/ circ = 26.6cm
-//4096 steps in a full rotation/ 1539 steps for 10cm
-//about 1645 steps for a 90deg turn
+// wheel is 8.47cm diameter/ circ = 26.6cm
+// 4096 steps in a full rotation/ 1539 steps for 10cm
+// about 1645 steps for a 90deg turn
 int turnSteps = 1645; // number of steps for a 90 degree turn
-int lineSteps = -5000; //number of steps to drive straight
+int lineSteps = -3400; //number of steps to drive straight
 int stepperSpeed = 1000; //speed of the stepper (steps per second)
 int steps1 = 0; // keep track of the step count for motor 1
 int steps2 = 0; // keep track of the step count for motor 2
 
 // reset motors after move
-void resetMot( void ) {
+void resetMot(void) {
     stepper1.setMaxSpeed(2000.0);
-    stepper1.move(1);  // I found this necessary
+    stepper1.move(1);
     stepper1.setSpeed(stepperSpeed);
 
     stepper2.setMaxSpeed(2000.0);
-    stepper2.move(-1);  // I found this necessary
+    stepper2.move(-1);
     stepper2.setSpeed(stepperSpeed);
 }
 
 
-void left( void ){
-    //resetMot();
+void left(void){
     int target = turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -118,7 +117,6 @@ void left( void ){
 
 
 void right( void ){
-    //resetMot();
     int target = -turnSteps;
     stepper1.move(target);
     stepper1.setSpeed(stepperSpeed);
@@ -167,7 +165,6 @@ int * receivePath( void ) {
     Serial.println(pathlen);
 
     // Read in path
-
     static int * path;
     path = (int*)malloc(pathlen+1 * sizeof(int));
     path[0] = pathlen;

@@ -14,7 +14,7 @@ def writeToArd(string):
 # this is acheived by converting to a ascii encoded byte array.
 # args: string
 # returns: nothing
-    serialport = "/dev/rfcomm0"
+    serialport = "/dev/rfcomm1"
     #initialize an serial port arduino instance
     ard = serial.Serial(serialport, 9600, timeout = 5)
 
@@ -35,13 +35,3 @@ def writeToArd(string):
 
 if __name__ == "__main__":
     writeToArd(rf0, 9600, "test")
-
-
-#EXAMPLE WRITES:
-#val1 = bytearray("SSSNNNWNWEEEWNWEWNWNWNSNWEWSN", 'ascii') # defining ascii encoding
-#ard.write(val1)
-
-#val2 = bytearray(b'W') # just calling it binary
-#ard.write(val2)
-
-
