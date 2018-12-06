@@ -11,7 +11,7 @@ import numpy as np
 
 
 # Global statement: this is where one can change the name of the input file
-im = Image.open("mazes/maze1_medium.gif")
+im = Image.open("mazes/maze1_11X11.gif")
 
 
 class node:

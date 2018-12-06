@@ -15,15 +15,15 @@ steps:
 	3: implement algorith in pathfinding.py
 		3.1: implement djikstras algorithm or a* or d*
 		3.2: navigate the maze and output shortest path along nodes
-		3.3: https://github.com/mikepound/mazesolving
 
-part2;
+
+Part2;
 objective: Implement maze navigation in an arduino
 steps:
 	1: make robot
 	2: make movement library/api for robot
 	3: make physical maze
-	4: implement
+	4: implement bluetooth data read in
 
 
 
@@ -31,13 +31,6 @@ steps:
 Resources:
 maze generation:
 https://hereandabove.com/maze/mazeorig.form.html
-
-example code:
-https://github.com/mikepound/mazesolving
-
-Litteraly what we are trying to implement?
-https://www.laurentluce.com/posts/solving-mazes-using-python-simple-recursivity-and-a-search/
-http://bryukh.com/labyrinth-algorithms/
 
 Stepper Control:
 http://www.airspayce.com/mikem/arduino/AccelStepper/classAccelStepper.html

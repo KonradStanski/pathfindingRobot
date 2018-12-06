@@ -6,6 +6,25 @@
 #    Final Project
 # ---------------------------------------------------
 
+
+Included Files:
+    Readme
+    outline.txt
+        Python/
+            maze.py
+            pathfinding.py
+            pyToArd.py
+            mazes/
+                maze1_11X11.gif
+                maze_big.gif
+            soln_mazes/
+                maze1_11X11_soln.gif
+                maze_big_soln.gif
+        Arduino/
+            Makefile
+            main.cpp
+
+
 Running Instructions:
     1. Wire the Arduino as detailed in the wiring instructions below
     2. Configure the makefile as detailed below

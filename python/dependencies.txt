@@ -1,4 +1,0 @@
-numpy   import numpy
-pillow    import pil
-time    import time
-pyserial import serial
