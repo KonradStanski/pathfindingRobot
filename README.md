@@ -1,12 +1,4 @@
 # Pathfinding Arduino Rover
-#---------------------------------------------------
-#    Name: Konrad Staniszewski, Andrew Rooney
-#    ID: 1531593, 1496508
-#    CMPUT 274, Fall  2018
-#
-#    Final Project
-# ---------------------------------------------------
-
 
 ## Included Files:
     Readme
