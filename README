@@ -1,3 +1,4 @@
+# Pathfinding Arduino Rover
 #---------------------------------------------------
 #    Name: Konrad Staniszewski, Andrew Rooney
 #    ID: 1531593, 1496508
@@ -7,7 +8,7 @@
 # ---------------------------------------------------
 
 
-Included Files:
+## Included Files:
     Readme
     outline.txt
         Python/
@@ -25,7 +26,7 @@ Included Files:
             main.cpp
 
 
-Running Instructions:
+## Running Instructions:
     1. Wire the Arduino as detailed in the wiring instructions below
     2. Configure the makefile as detailed below
     3. Make and upload to the arduino
@@ -40,7 +41,7 @@ Running Instructions:
     12. The robot will now run the maze and print its current state to the minicom terminal over bluetooth
 
 
-Python Requirments:
+## Python Requirments:
     pillow import as PIL
         sudo pip3 install pillow
     time import as time
@@ -50,7 +51,7 @@ Python Requirments:
         sudo pip3 install pyserial
 
 
-Wiring instructions:
+## Wiring instructions:
     //Stepper Drivers
     Arduino digital pin 3     // IN1 on the ULN2003 driver 1
     Arduino digital pin 4     // IN2 on the ULN2003 driver 1
@@ -73,7 +74,7 @@ Wiring instructions:
     5-12V Power Source        // Arduino VIN
     GND Power Source          // Arduino GND
 
-Makefile Configuration and Requirments for Arduino:
+## Makefile Configuration and Requirments for Arduino:
     In order to make main.cpp, you need to navigate to /usr/share/arduino/libraries
     and copy the Servo Library and copy it to /arduino-ua/libraries
     It is also necessary to download the virtualWire library from:
@@ -86,7 +87,7 @@ Makefile Configuration and Requirments for Arduino:
     ARDUINO_LIBS = SD SPI Adafruit_GFX Adafruit_ILI9341 TouchScreen AccelStepper
 
 
-Resources:
+## Resources:
     maze generation:
     https://hereandabove.com/maze/mazeorig.form.html
 
@@ -99,6 +100,6 @@ Resources:
     https://botforge.wordpress.com/2016/07/26/the-right-way-to-connect-an-hc-05-bluetooth-module-to-an-arduino/
 
 
-Notes:
+## Notes:
     Serial port is defined in writeToArd() function in pyToArd.py
     Function comments can be found with the functions
