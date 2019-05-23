@@ -1,4 +1,6 @@
 # Pathfinding Arduino Rover
+### Video:
+https://www.youtube.com/watch?v=gOMG96O_x_0
 
 ## Included Files:
     Readme
